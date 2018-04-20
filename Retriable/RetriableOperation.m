@@ -25,11 +25,10 @@
 @property (nonatomic,assign) BOOL                       _isExecuting;
 @property (nonatomic,assign) BOOL                       _isFinished;
 
-@property (nonatomic,strong) id                         context;
-@property (nonatomic,strong) void(^_completion)(id context,id response,NSError *latestError);
-@property (nonatomic,strong) NSTimeInterval (^retryAfter)(id context,NSInteger currentRetryTime,NSError *latestError);
-@property (nonatomic,strong) void(^_start)(id context,void(^callback)(id response,NSError *error));
-@property (nonatomic,strong) void(^_cancel)(id context);
+@property (nonatomic,strong) void(^_completion)(id response,NSError *latestError);
+@property (nonatomic,strong) NSTimeInterval (^retryAfter)(NSInteger currentRetryTime,NSError *latestError);
+@property (nonatomic,strong) void(^_start)(void(^callback)(id response,NSError *error));
+@property (nonatomic,strong) void(^_cancel)(void);
 @property (nonatomic,strong) NSArray<NSError*> *cancelledErrorTemplates;
 
 @property (nonatomic,assign) NSInteger                  currentRetryTime;
@@ -54,16 +53,14 @@
     RetryLog(@"operation: %@\nwill dealloc",self.context);
 }
 
-- (instancetype)initWithContext:(id)context
-                     completion:(void(^)(id context,id response,NSError *latestError))completion
-                     retryAfter:(NSTimeInterval(^)(id context,NSInteger currentRetryTime,NSError *latestError))retryAfter
-                          start:(void(^)(id context,void(^callback)(id response,NSError *error)))start
-                         cancel:(void(^)(id context))cancel
-        cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates{
+- (instancetype)initWithCompletion:(void(^)(id response,NSError *latestError))completion
+                        retryAfter:(NSTimeInterval(^)(NSInteger currentRetryTime,NSError *latestError))retryAfter
+                             start:(void(^)(void(^callback)(id response,NSError *error)))start
+                            cancel:(void(^)(void))cancel
+           cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates{
     self=[super init];
     if (!self) return self;
     self.lock=[[NSLock alloc]init];
-    self.context=context;
     self.retryAfter = retryAfter;
     self._completion =completion;
     self._start = start;
@@ -111,7 +108,7 @@
     else RetryLog(@"operation: %@\nretrying: %ld", self.context,(long)self.currentRetryTime);
     self._isExecuting=YES;
     __weak typeof(self) weakSelf=self;
-    self._start(self.context, ^(id response, NSError *error) {
+    self._start(^(id response, NSError *error) {
         __strong typeof(weakSelf) self=weakSelf;
         [self.lock lock];
         if (self.isCancelled||self.isFinished){
@@ -130,7 +127,7 @@
             [self.lock unlock];
             return;
         }
-        NSTimeInterval interval=self.retryAfter(self.context,++self.currentRetryTime,self.latestError);
+        NSTimeInterval interval=self.retryAfter(++self.currentRetryTime,self.latestError);
         if (interval==0) {
             [self complete];
             [self.lock unlock];
@@ -162,7 +159,7 @@
 }
 
 - (void)cancel_{
-    self._cancel(self.context);
+    self._cancel();
     if (!self.timer) return;
     dispatch_source_cancel(self.timer);
     self.timer=nil;
@@ -171,7 +168,7 @@
 - (void)complete{
     self._isExecuting=NO;
     self._isFinished=YES;
-    if (self._completion) self._completion(self.context ,self.response, self.latestError);
+    if (self._completion) self._completion(self.response, self.latestError);
     RetryLog(@"operation: %@\ndid complete\nresponse:%@\nerror:%@",self.context,self.response,self.latestError);
     [self endBackgroundTask];
 }
