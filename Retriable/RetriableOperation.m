@@ -7,14 +7,11 @@
 //
 #import <Foundation/Foundation.h>
 #import "RetriableOperation.h"
-#if TARGET_OS_IPHONE
-#if TARGET_OS_WATCH
-#else
-#define RETRIABLE_TARGET_OS_IPHONE 1
-#endif
+#if TARGET_OS_IOS && TARGET_OS_TV
+#define RETRIABLE_UIKIT 1
 #endif
 
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
 #import <UIKit/UIKit.h>
 #endif
 //#define RetryLog(...) printf("\n%s\n",[[NSString stringWithFormat:__VA_ARGS__] UTF8String])
@@ -36,7 +33,7 @@
 @property (nonatomic,strong) id                         response;
 @property (nonatomic,retain) dispatch_source_t          timer;
 @property (nonatomic,strong) NSRecursiveLock            *lock;
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
 @property (nonatomic,assign) UIBackgroundTaskIdentifier backgroundTaskId;
 #endif
 @property (nonatomic,assign) BOOL                       isPaused;
@@ -46,7 +43,7 @@
 @implementation RetriableOperation
 
 - (void)dealloc{
-#if TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
     [self cancel];
@@ -67,7 +64,7 @@
     self._cancel = cancel;
     if (cancelledErrorTemplates.count>0) self.cancelledErrorTemplates=cancelledErrorTemplates;
     else self.cancelledErrorTemplates=@[[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]];
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
 #endif
     return self;
@@ -176,7 +173,7 @@
 #pragma mark --
 #pragma mark -- background task
 
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
 - (void)applicationWillEnterForeground{
     [self.lock lock];
     if (self.isExecuting&&self.backgroundTaskId==UIBackgroundTaskInvalid) [self start_];
@@ -185,7 +182,7 @@
 #endif
 
 - (void)beginBackgroundTask{
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
     if (self.backgroundTaskId!=UIBackgroundTaskInvalid) return;
     __weak typeof(self) weakSelf=self;
     self.backgroundTaskId=[[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
@@ -201,7 +198,7 @@
 }
 
 - (void)endBackgroundTask{
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
     if (self.backgroundTaskId==UIBackgroundTaskInvalid) return;
     [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskId];
     self.backgroundTaskId=UIBackgroundTaskInvalid;
@@ -216,7 +213,7 @@
         return;
     }
     _isPaused=isPaused;
-#if RETRIABLE_TARGET_OS_IPHONE
+#if RETRIABLE_UIKIT
     if (!self.executing||self.backgroundTaskId==UIBackgroundTaskInvalid){
 #else
     if (!self.executing){
