@@ -26,7 +26,12 @@
  @param cancelledErrorTemplates optional, error teimplates of canncelled error. default @[[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]].
  @return operation
  */
-- (instancetype)initWithContext:(id)context completion:(void(^)(id context,id response,NSError *latestError))completion retryAfter:(NSTimeInterval(^)(id context,NSInteger currentRetryTime,NSError *latestError))retryAfter start:(void(^)(id context,void(^callback)(id response,NSError *error)))start cancel:(void(^)(id context))cancel cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates;
+- (instancetype)initWithContext:(id)context
+                     completion:(void(^)(id context,id response,NSError *latestError))completion
+                     retryAfter:(NSTimeInterval(^)(id context,NSInteger currentRetryTime,NSError *latestError))retryAfter
+                          start:(void(^)(id context,void(^callback)(id response,NSError *error)))start
+                         cancel:(void(^)(id context))cancel
+        cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates;
 
 /**
  pause operation.

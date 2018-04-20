@@ -54,7 +54,12 @@
     RetryLog(@"operation: %@\nwill dealloc",self.context);
 }
 
-- (instancetype)initWithContext:(id)context completion:(void(^)(id context,id response,NSError *latestError))completion retryAfter:(NSTimeInterval(^)(id context,NSInteger currentRetryTime,NSError *latestError))retryAfter start:(void(^)(id context,void(^callback)(id response,NSError *error)))start cancel:(void(^)(id context))cancel cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates{
+- (instancetype)initWithContext:(id)context
+                     completion:(void(^)(id context,id response,NSError *latestError))completion
+                     retryAfter:(NSTimeInterval(^)(id context,NSInteger currentRetryTime,NSError *latestError))retryAfter
+                          start:(void(^)(id context,void(^callback)(id response,NSError *error)))start
+                         cancel:(void(^)(id context))cancel
+        cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates{
     self=[super init];
     if (!self) return self;
     self.lock=[[NSLock alloc]init];
