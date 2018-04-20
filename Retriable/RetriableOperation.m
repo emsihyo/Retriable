@@ -35,7 +35,7 @@
 @property (nonatomic,strong) NSError                    *latestError;
 @property (nonatomic,strong) id                         response;
 @property (nonatomic,retain) dispatch_source_t          timer;
-@property (nonatomic,strong) NSLock                     *lock;
+@property (nonatomic,strong) NSRecursiveLock            *lock;
 #if RETRIABLE_TARGET_OS_IPHONE
 @property (nonatomic,assign) UIBackgroundTaskIdentifier backgroundTaskId;
 #endif
@@ -60,7 +60,7 @@
            cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates{
     self=[super init];
     if (!self) return self;
-    self.lock=[[NSLock alloc]init];
+    self.lock=[[NSRecursiveLock alloc]init];
     self.retryAfter = retryAfter;
     self._completion =completion;
     self._start = start;
