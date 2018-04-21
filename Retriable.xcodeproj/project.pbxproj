@@ -503,7 +503,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-macOS";
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -531,7 +531,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-macOS";
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
