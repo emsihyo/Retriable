@@ -200,10 +200,10 @@ static inline void retriable_log(NSString *log){
         [self.lock lock];
         if (self.executing&&!self.isPaused) [self cancel_];
         self.backgroundTaskId=UIBackgroundTaskInvalid;
-        RetryLog(@"%@ background task did expired",self.context);
+        RetryLog(@"%@ background task did expired",self);
         [self.lock unlock];
     }];
-    RetryLog(@"%@ background task did begin",self.context);
+    RetryLog(@"%@ background task did begin",self);
 #endif
 }
 
@@ -212,7 +212,7 @@ static inline void retriable_log(NSString *log){
     if (self.backgroundTaskId==UIBackgroundTaskInvalid) return;
     [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskId];
     self.backgroundTaskId=UIBackgroundTaskInvalid;
-    RetryLog(@"%@ background task did end",self.context);
+    RetryLog(@"%@ background task did end",self);
 #endif
 }
 
