@@ -30,6 +30,9 @@
 		0A5CF58C2088D10000106219 /* RetriableOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetriableOperation.h; sourceTree = "<group>"; };
 		0AE7D58F2088D09B00F81319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AFC363A2089CF4100D2DCC1 /* Retriable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Retriable.h; sourceTree = "<group>"; };
+		0AFEF84D208B8E9600D6FEC4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		0AFEF84E208B8E9700D6FEC4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		0AFEF84F208B8E9700D6FEC4 /* Retriable.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Retriable.podspec; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,9 @@
 				0A5CF58C2088D10000106219 /* RetriableOperation.h */,
 				0A5CF58B2088D10000106219 /* RetriableOperation.m */,
 				0AE7D58F2088D09B00F81319 /* Info.plist */,
+				0AFEF84D208B8E9600D6FEC4 /* LICENSE */,
+				0AFEF84E208B8E9700D6FEC4 /* README.md */,
+				0AFEF84F208B8E9700D6FEC4 /* Retriable.podspec */,
 			);
 			path = Retriable;
 			sourceTree = "<group>";
