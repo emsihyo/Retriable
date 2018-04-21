@@ -14,8 +14,14 @@
 #if RETRIABLE_UIKIT
 #import <UIKit/UIKit.h>
 #endif
-//#define RetryLog(...) printf("\n%s\n",[[NSString stringWithFormat:__VA_ARGS__] UTF8String])
-#define RetryLog(...)
+
+static BOOL logEnabled = NO;
+
+static inline void retriable_log(NSString *log){
+    if (logEnabled) printf("\n%s\n",[log UTF8String]);
+}
+
+#define RetryLog(...) retriable_log([NSString stringWithFormat:__VA_ARGS__])
 
 @interface RetriableOperation ()
 
@@ -42,12 +48,16 @@
 
 @implementation RetriableOperation
 
++ (void)setLogEnabled:(BOOL)enabled{
+    logEnabled=enabled;
+}
+
 - (void)dealloc{
 #if RETRIABLE_UIKIT
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #endif
     [self cancel];
-    RetryLog(@"operation: %@\nwill dealloc",self.context);
+    RetryLog(@"%@ will dealloc",self);
 }
 
 - (instancetype)initWithCompletion:(void(^)(id response,NSError *latestError))completion
@@ -101,8 +111,8 @@
     if (self.isCancelled||self.isFinished) return;
     [self beginBackgroundTask];
     if (self.isPaused) return;
-    if (self.currentRetryTime==0) RetryLog(@"operation: %@\ndid start",self.context);
-    else RetryLog(@"operation: %@\nretrying: %ld", self.context,(long)self.currentRetryTime);
+    if (self.currentRetryTime==0) RetryLog(@"%@ did start",self);
+    else RetryLog(@"%@ retrying: %ld",self,(long)self.currentRetryTime);
     self._isExecuting=YES;
     __weak typeof(self) weakSelf=self;
     self._start(^(id response, NSError *error) {
@@ -135,11 +145,11 @@
             return;
         }
         if (self.timer) {
-            NSAssert(0, @"there is a issue about duplicated response");
+            NSAssert(0, @"there is a issue about multiple callback");
             dispatch_source_cancel(self.timer);
             self.timer=nil;
         }
-        RetryLog(@"operation: %@\nwill retry after: %.2f, error: %@",self.context,interval,self.latestError);
+        RetryLog(@"%@ will retry after: %.2f\nlatest error: %@",self,interval,self.latestError);
         self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
         dispatch_source_set_timer(self.timer, dispatch_walltime(DISPATCH_TIME_NOW, interval*NSEC_PER_SEC), INT32_MAX * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
         dispatch_source_set_event_handler(self.timer, ^{
@@ -166,7 +176,7 @@
     self._isExecuting=NO;
     self._isFinished=YES;
     if (self._completion) self._completion(self.response, self.latestError);
-    RetryLog(@"operation: %@\ndid complete\nresponse:%@\nerror:%@",self.context,self.response,self.latestError);
+    RetryLog(@"%@ did complete\nresponse: %@\nerror: %@",self,self.response,self.latestError);
     [self endBackgroundTask];
 }
 
@@ -190,10 +200,10 @@
         [self.lock lock];
         if (self.executing&&!self.isPaused) [self cancel_];
         self.backgroundTaskId=UIBackgroundTaskInvalid;
-        RetryLog(@"operation: %@\nbackground task did expired",self.context);
+        RetryLog(@"%@ background task did expired",self.context);
         [self.lock unlock];
     }];
-    RetryLog(@"operation: %@\nbackground task did begin",self.context);
+    RetryLog(@"%@ background task did begin",self.context);
 #endif
 }
 
@@ -202,7 +212,7 @@
     if (self.backgroundTaskId==UIBackgroundTaskInvalid) return;
     [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskId];
     self.backgroundTaskId=UIBackgroundTaskInvalid;
-    RetryLog(@"operation: %@\nbackground task did end",self.context);
+    RetryLog(@"%@ background task did end",self.context);
 #endif
 }
 
