@@ -40,6 +40,14 @@
  */
 - (void)resume;
 
+/**
+ enable log or not.
+
+ @param enabled enabled
+ */
+
++ (void)setLogEnabled:(BOOL)enabled;
+
 @end
 
 
