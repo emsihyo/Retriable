@@ -10,6 +10,7 @@ Pod::Spec.new do |spec|
     spec.requires_arc = true
     spec.source_files = 'Retriable/*.{h,m}'
     spec.ios.framework = 'UIKit'
+    spec.tvos.framework = 'UIKit'
     spec.ios.deployment_target = '8.0'
     spec.watchos.deployment_target = '2.0'
     spec.tvos.deployment_target = '9.0'
