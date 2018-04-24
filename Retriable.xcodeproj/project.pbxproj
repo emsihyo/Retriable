@@ -341,7 +341,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -366,7 +366,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -392,7 +392,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -420,7 +420,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -447,7 +447,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -474,7 +474,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -504,7 +504,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -532,7 +532,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.emsihyo.Retriable-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emsihyo.Retriable;
 				PRODUCT_NAME = Retriable;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
