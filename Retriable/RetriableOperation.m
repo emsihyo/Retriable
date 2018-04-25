@@ -67,7 +67,7 @@ static inline void retriable_log(NSString *log){
                             cancel:(void(^)(void))cancel
            cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates{
     self=[super init];
-    if (!self) return self;
+    if (!self) return nil;
     self.lock=[[NSRecursiveLock alloc]init];
     self.retryAfter = retryAfter;
     self._completion =completion;

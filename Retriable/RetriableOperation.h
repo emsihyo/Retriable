@@ -19,7 +19,7 @@
  @param cancelledErrorTemplates optional, error teimplates of canncelled error. default @[[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]].
  @return operation
  */
-- (instancetype)initWithCompletion:(void(^ _Nullable)(id _Nullable response,NSError * _Nullable latestError))completion
+- (instancetype _Nullable)initWithCompletion:(void(^ _Nullable)(id _Nullable response,NSError * _Nullable latestError))completion
                      retryAfter:(NSTimeInterval(^ _Nullable)(NSInteger currentRetryTime,NSError * _Nullable latestError))retryAfter
                           start:(void(^_Nonnull)(void(^ _Nonnull callback)(id _Nullable response,NSError * _Nullable error)))start
                          cancel:(void(^_Nonnull)(void))cancel
