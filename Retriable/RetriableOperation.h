@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface RetriableOperation : NSOperation
-
-@property (readonly) id        response;
-@property (readonly) NSInteger currentRetryTime;
-@property (readonly) NSError   *latestError;
-
 /**
  init a operation.
 
@@ -24,11 +19,11 @@
  @param cancelledErrorTemplates optional, error teimplates of canncelled error. default @[[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]].
  @return operation
  */
-- (instancetype)initWithCompletion:(void(^)(id response,NSError *latestError))completion
-                     retryAfter:(NSTimeInterval(^)(NSInteger currentRetryTime,NSError *latestError))retryAfter
-                          start:(void(^)(void(^callback)(id response,NSError *error)))start
-                         cancel:(void(^)(void))cancel
-        cancelledErrorTemplates:(NSArray<NSError*>*)cancelledErrorTemplates;
+- (instancetype)initWithCompletion:(void(^ _Nullable)(id _Nullable response,NSError * _Nullable latestError))completion
+                     retryAfter:(NSTimeInterval(^ _Nullable)(NSInteger currentRetryTime,NSError * _Nullable latestError))retryAfter
+                          start:(void(^_Nonnull)(void(^ _Nonnull callback)(id _Nullable response,NSError * _Nullable error)))start
+                         cancel:(void(^_Nonnull)(void))cancel
+        cancelledErrorTemplates:(NSArray<NSError*>* _Nullable)cancelledErrorTemplates;
 
 /**
  pause operation.
