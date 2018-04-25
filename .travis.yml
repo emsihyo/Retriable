@@ -20,7 +20,7 @@ before_install:
 
 script:
     - set -o pipefail
-    - xcodebuild clean build -project Retriable.xcodeproj -target 'Retriable iOS' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -configuration Debug | xcpretty
+    - xcodebuild clean build -project Retriable.xcodeproj -target 'Retriable iOS' -sdk iphonesimulator -configuration Debug | xcpretty
     - xcodebuild clean build -project Retriable.xcodeproj -target 'Retriable watchOS' -sdk watchsimulator -configuration Debug | xcpretty
     - xcodebuild clean build -project Retriable.xcodeproj -target 'Retriable tvOS'  -sdk appletvsimulator -configuration Debug | xcpretty
     - xcodebuild clean build -project Retriable.xcodeproj -target 'Retriable macOS' -sdk macosx -configuration Debug | xcpretty

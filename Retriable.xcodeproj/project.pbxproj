@@ -22,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A234E832090881A00DBCD50 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		0A39EF1C208924EE002BF53D /* Retriable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Retriable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A39EF292089253F002BF53D /* Retriable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Retriable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A39EF3620892564002BF53D /* Retriable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Retriable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +90,7 @@
 		0AE7D58D2088D09B00F81319 /* Retriable */ = {
 			isa = PBXGroup;
 			children = (
+				0A234E832090881A00DBCD50 /* .travis.yml */,
 				0AFC363A2089CF4100D2DCC1 /* Retriable.h */,
 				0A5CF58C2088D10000106219 /* RetriableOperation.h */,
 				0A5CF58B2088D10000106219 /* RetriableOperation.m */,
