@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name     = 'Retriable'
-    spec.version  = '1.0.2'
+    spec.version  = '1.0.3'
     spec.license  = 'MIT'
     spec.summary  = 'Make asynchronous components retriable'
     spec.homepage = 'https://github.com/retriable/Retriable'
