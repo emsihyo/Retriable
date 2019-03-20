@@ -3,9 +3,9 @@ Pod::Spec.new do |spec|
     spec.version  = '1.0.2'
     spec.license  = 'MIT'
     spec.summary  = 'Make asynchronous components retriable'
-    spec.homepage = 'https://github.com/emsihyo/Retriable'
-    spec.author   = { 'emsihyo' => 'emsihyo@gmail.com' }
-    spec.source   = { :git => 'https://github.com/emsihyo/Retriable.git',:tag => "#{spec.version}" }
+    spec.homepage = 'https://github.com/retriable/Retriable'
+    spec.author   = { 'retriable' => 'retriable@retriable' }
+    spec.source   = { :git => 'https://github.com/retriable/Retriable.git',:tag => "#{spec.version}" }
     spec.description = 'Make asynchronous components retriable.'
     spec.requires_arc = true
     spec.source_files = 'Retriable/*.{h,m}'

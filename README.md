@@ -1,8 +1,8 @@
 # Retriable
 
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/emsihyo/Retriable/master/LICENSE)
-[![Build Status](http://img.shields.io/travis/emsihyo/Retriable/master.svg?style=flat)](https://travis-ci.org/emsihyo/Retriable)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/emsihyo/Retriable)
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/retriable/Retriable/master/LICENSE)
+[![Build Status](http://img.shields.io/travis/retriable/Retriable/master.svg?style=flat)](https://travis-ci.org/retriable/Retriable)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/retriable/Retriable)
 [![Pod Version](http://img.shields.io/cocoapods/v/Retriable.svg?style=flat)](http://cocoapods.org/pods/Retriable)
 [![Pod Platform](http://img.shields.io/cocoapods/p/Retriable.svg?style=flat)](http://cocoapods.org/pods/Retriable)
 
@@ -19,12 +19,12 @@ pod 'Retriable'
 
 Add the following to your project's Cartfile:
 ```ruby
-github "emsihyo/Retriable"
+github "retriable/Retriable"
 ```
 #### Example
 
-[RetriableAFNetworking](https://github.com/emsihyo/RetriableAFNetworking)
+[RetriableAFNetworking](https://github.com/retriable/RetriableAFNetworking)
 
-[RetriableSDWebImage](https://github.com/emsihyo/RetriableSDWebImage)
+[RetriableSDWebImage](https://github.com/retriable/RetriableSDWebImage)
 
 
